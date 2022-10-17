@@ -23,15 +23,15 @@ else:
 
 ```
 
-When I run the code, a new window will open with the stunning Yeosu Nightsea Photo. (FYI, the photo above was taken by me; use the photo you took to reverse the code.) The image can be read using the cv2.imread() function. The cv2.imshow() function outputs the read picture to the screen. When you press any key on the keyboard, the window disappears. If there is no cv2.waitKey() in the code, the window will appear and then disappear. This is because cv2.wiatKey() does the ability to pop up a photo until a key is entered. After you've entered the key, use cv2.destroyAllWindows to turn off all window windows ().
+When I run the code, a new window will open with zebra Photo. (FYI, the photo above was taken by me; use the photo you took to reverse the code.) The image can be read using the cv2.imread() function. The cv2.imshow() function outputs the read picture to the screen. When you press any key on the keyboard, the window disappears. If there is no cv2.waitKey() in the code, the window will appear and then disappear. This is because cv2.wiatKey() does the ability to pop up a photo until a key is entered. After you've entered the key, use cv2.destroyAllWindows() function to turn off all window windows.
 
 
-Let's now print a black-and-white image. cv2 as a parameter of cv2.imread (). When you pass an IMREAD_GRAYSCALE, it is imported as a black and white image. The code below is the same as the code above and cv2. IMREAD_GRAYSCALE is only used as a parameter.
+Let's now print a black-and-white image. cv2 as a parameter of cv2.imread (). When you pass an IMREAD_GRAYSCALE, it is imported as a black and white image. The code below is the same as the code above and cv2.IMREAD_GRAYSCALE is only used as a parameter.
 
 cv2.imread(path, flag)
 path: image file pathflag
 : Set
-how images are read - cv2. IMREAD_COLOR (default): Imports as a color image. Ignores the transparency (alpha value).
+how images are read - cv2.IMREAD_COLOR (default): Imports as a color image. Ignores the transparency (alpha value).
 - cv2. IMREAD_GRAYSCALE: Loads the image in black and white tones.
 - cv2. IMREAD_UNCHANGED: Imports the image as-is, including the transparency (alpha value).
 
@@ -89,13 +89,13 @@ import cv2
 
 video_file = "../img/big_buck.avi" # Video file path
 
-cap = cv2.VideoCapture(video_file) # Create a video capture object ---①
+cap = cv2.VideoCapture(video_file) # Create a video capture object
 if cap.isOpened(): # Check capture object initialization
      while True:
-         ret, img = cap.read() # Read next frame --- ②
+         ret, img = cap.read() # Read next frame
          if ret: # frame read normal
-             cv2.imshow(video_file, img) # Display on screen --- ③
-             cv2.waitKey(25) # 25ms delay (assume 40fps) --- ④
+             cv2.imshow(video_file, img) # Display on screen
+             cv2.waitKey(25) # 25ms delay (assume 40fps)
          else: # Unable to read next frame,
              break # finished playing
 else:
@@ -104,7 +104,7 @@ cap.release() # Release capture resource
 cv2.destroyAllWindows()
 ```
 
-cv2. VideoCapture(video file) reads the first frame of a movie file and saves it to the capture object cap. It should be noted that the complete video is not included in the cap. It just contains the video's initial frame. cap.isOpened() checks whether the cap object has been successfully initialized to the supplied file. If initialization is successful, returns True; otherwise, returns False. In an infinite loop, call cap.read() to read frames from the file in sequence. If you read the frame correctly, rett will be True and img will be the image of the frame. If it is not correctly read, rett is False and image is None. If the next frame read fails, there is an issue with the file or device, or the file has reached its conclusion. To display the frame image on the screen, use cv2.imshow(video file, img). The video file argument of imshow is the title of the window that displays on the screen, and the img argument is the frame image object to display on the screen. After all of the code has been completed, the resource must be returned by calling the cap.release() function.
+cv2. VideoCapture(video file) reads the first frame of a movie file and saves it to the capture object cap. It should be noted that the complete video is not included in the cap. It just contains the video's initial frame. cap.isOpened() checks whether the cap object has been successfully initialized to the supplied file. If initialization is successful, returns True; otherwise, returns False. In an infinite loop, call cap.read() to read frames from the file in sequence. If you read the frame correctly, ret will be True and img will be the image of the frame. If it is not correctly read, ret is False and image is None. If the next frame read fails, there is an issue with the file or device, or the file has reached its conclusion. To display the frame image on the screen, use cv2.imshow(video file, img). The video file argument of imshow is the title of the window that displays on the screen, and the img argument is the frame image object to display on the screen. After all of the code has been completed, the resource must be returned by calling the cap.release() function.
 
 
 The above code is simple to understand if you consider a video to be the total of multiple frame images. Does it look like a moving video when you show a fractured frame image in rapid succession? The code above also works by displaying a single frame image in real time. The frame would skip too fast to be visible without the cv2.waitKey(25) function. However, after a 25ms delay, each frame is presented on the screen, allowing us to watch the film. Latency is the value returned by cv2.waitKey(). If you enter a number less than 25, the video appears to play quicker, and if you enter a number more than 25, the video appears to play slowly.
@@ -118,13 +118,13 @@ You can read live videos with your webcam in addition to the video files that ha
 
 import cv2
 
-cap = cv2.VideoCapture(0) # Connect camera device number 0 ---①
+cap = cv2.VideoCapture(0) # Connect camera device number 0
 if cap.isOpened(): # Check capture object connection
      while True:
-         ret, img = cap. read() # read next frame
+         ret, img = cap.read() # read next frame
          if ret:
              cv2.imshow('camera', img) # Show next frame image
-             if cv2.waitKey(1) != -1: # Wait for key input for 1ms ---②
+             if cv2.waitKey(1) != -1: # Wait for key input for 1ms
                  break # Stop on any key input
          else:
              print('no frame')
@@ -185,7 +185,7 @@ import cv2
 
 cap = cv2.VideoCapture(0) # Connect camera 0
 if cap.isOpened:
-    file_path = './record.avi' # File path name to save ---①
+    file_path = './record.avi' # File path name to save
     fps = 30.0 # FPS, frames per second
     fourcc = cv2.VideoWriter_fourcc(*'DIVX') # Encoding format character
     width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
@@ -212,15 +212,12 @@ cv2.destroyAllWindows()
 
 cv2. I constructed a VideoWriter() object and placed it in the out variable. When out.write(frame) is used, the current frame is saved.
 
-This function examines the attributes of a video or camera. cv2. CAP PROP FRAME WIDTH represents the frame width, while cv2. CAP PROP FRAME HEIGHT represents the frame height. Therefore, cap.get(cv2.CAP PROP FRAME WIDTH) gets the object's frame width.
-
-
+This function examines the attributes of a video or camera. cv2.CAP_PROP_FRAME_WIDTH represents the frame width, while cv2.CAP_PROP_FRAME_HEIGHT represents the frame height. Therefore, cap.get(cv2.CAP PROP FRAME WIDTH) gets the object's frame width.
 
 Note that FPS stands for frames per second, and FPS can be used to obtain latency.
 
 ```
 Latency = 1000 / fps
 ```
-
 
 The reason 1000 is calculated is because 1 second (1s) is 1,000 milliseconds (1,000 ms). The code then sets the latency to cv2.waitKey(int(1000/fps)).
