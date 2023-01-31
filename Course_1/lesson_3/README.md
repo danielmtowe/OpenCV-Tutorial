@@ -1,4 +1,4 @@
-## OpenCV - 3. Draw a shape
+## OpenCV_Lesson3_Draw a shape
 
 This article will demonstrate how to draw shapes on an image.
 
@@ -12,7 +12,7 @@ Using the cv2.line(img, start, end, color, thickness, lineType) function, you ma
 - end: Line end coordinates (ex; (500. 500))
 - color: BGR-shaped line color (ex; (255, 0, 0) -> Blue)
 - thickness (int): The thickness of the line. pixel (default=1)
-- lineType: Line drawing format (cv2. LINE_4, cv2. LINE_8, cv2. LINE_AA)
+- lineType: Line drawing format (cv2.LINE_4, cv2.LINE_8, cv2.LINE_AA)
 
 
 Note that the representation of color is BGR, not RGB. It is essential to observe that the order is opposite. When the code below is executed, several straight lines are drawn on the empty image blank 500.jpg.
@@ -53,7 +53,7 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
 
-LINE 4 of cv2 and cv2 If LINE 8 parameters are passed in, the pixels appear fractured. (second line from the bottom, third red) cv2.LINE AA constructs a connecting line that minimizes the stair-like effect of pixel breaking. (red line positioned at the bottom)
+LINE_4 of cv2 and cv2 If LINE_8 parameters are passed in, the pixels appear fractured. (second line from the bottom, third red) cv2.LINE_AA constructs a connecting line that minimizes the stair-like effect of pixel breaking. (red line positioned at the bottom)
 
 
 ### Draw a rectangle
@@ -65,7 +65,7 @@ Rectangles can be drawn by using the cv2.rectangle(img, start, end, color, thick
 - end: square ending vertex coordinates (ex; (500. 500))
 - color: BGR-shaped line color (ex; (255, 0, 0) -> Blue)
 - thickness (int): The thickness of the line. pixel (default=1, fill the entire rectangle with color=-1)
-- lineType: Line drawing format (cv2. LINE_4, cv2. LINE_8, cv2. LINE_AA)
+- lineType: Line drawing format (cv2.LINE_4, cv2.LINE_8, cv2.LINE_AA)
 
 ```
 # Draw a rectangle (draw_rect.py)
