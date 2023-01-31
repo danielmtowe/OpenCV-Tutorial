@@ -1,0 +1,141 @@
+courese two 
+tutorial one 
+# Morphological Operations for cleaning up image 
+
+the morphological operations we will be covering include
+# errosion
+# dilation
+# opening
+# closing 
+# morphological gradient 
+# black hat
+# Top hat ("white hat")
+
+These image processing operations are applied to grayscale or binary images and 
+are used for preprocessing for OCR algorithms,detecting barcodes delecting license 
+plates and more 
+
+And somethings a clever use of morphological operations can allow you to avoid more
+complicated (and computationally expensive) machine learning and deep learning algorithms
+
+As a serious computer vision practianer you will neet to understand morphological opeations
+
+
+## use the dirt image clean then add up 
+Morphological operations are simple transformations applied to binary or grayscaleimages
+more speciffically we apply morphological operations to shapes and structures inside of images
+
+we can use morphological operations to increase the size of the size of objects in images as 
+well as decrease them. We can also utilize morphological operations to close gaps between objects as weel as open them 
+
+morphological operations probe an image with a structuring element this structuring element 
+defines the neighborhood to be exemined around each pixel  and based on the given 
+operation and the size structuring element we are able to adjust our output image.
+
+this explanation of a structuring element may sound vague -that's because it is.
+There are many different morphological transformations that perform "opposite "
+operations from one another -just as addition is the opposite of subtraction we can 
+think of the erosion morphological operation as the opposite of dilation.
+
+if this sounds confusing dont worry we will be reviewing many examples of each 
+of these morphological transformations and by the time you are done reading
+
+### errosion 
+Just like water rushing along a river bank erodes the soil in an image erodes the
+foreground object and make it smaller. Simply put pixes near the boundary of an 
+image will be discarded "eroding " it way
+
+erosion works by defining a structuring element and  then sliding this structuring element 
+from letf to right and top to bottom across the input image.
+
+a foreground pixel in the input image will be kept only if all pixels inside the structuring
+element are >0 . otherwise the pixels are set to 0 (ie., background)
+
+Erosion is usefull for removing small blobs in an image or disconnectingg two connected objects
+
+we can perfornm erosion by using the cv2.erode function, lets open a new file name it 
+morphological .py  and start coding 
+
+```
+
+# import thr necessary packages 
+import argparse
+import cv2
+
+# construct the argument parser and parse the argument 
+ap = argparse.ArgumentParser()
+ap.add_argument("-i","--image",type=str,default="image name ", help="path to the input image")
+args= vars(ap.parse_args())
+
+# load the image convert to grayscale and display it
+image = cv2.imread(args["image"])
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2.imshow("Original",image)
+
+# apply a series of erosions
+for i in range(0 3):
+	eroded = cv2.erode(gray.copy(), None iterations = i+1)
+	cv2.imshow("Eroded {} times".format(i+1),eroded)
+	cv2.waitKey(0)
+
+# close all windows to clean the screen 
+cv2.destroyAllWindows()
+cv2.imshow("Original",image)
+
+# apply a series of dilations
+for i in range (0 3):
+	dilated = cv2.dilate(gary.copy(),None, iteration=i+1)
+	cv2.imshow ("Dilated {} times".format(i+1),eroded)
+	cv2.waitKey(0)
+	
+# close all windows to clean the screen 
+cv2.destroyAllWindows()
+cv2.imshow("Original",image)
+kernelSizes =[(3,3),(5,5),(7,7)]
+
+# loop over the kernels sizes 
+for kernelSize in kernelSizes:
+	# construct a rectangular kernel from the current size and then apply an "opening operation"
+	kernel = cv2.getStructuringElement(cv2.MORPH, kernelSize)
+	opening = cv2.morphologyEx(gray, cv2.MORPH_OPEN, kernel)
+	cv2.imshow("Opening: ({},{})".format(kernelSize[0],kernelSize[1]),opening)
+	cv2.waitKey(0)
+
+# close all windows to clean the screen 
+cv2.destroyAllWindows()
+cv2.imshow("Original",image)
+
+# loop over the kernels sizes again
+for kernelSize in kernelSizes:
+	# construct a rectangular kernel from the current size and then apply an "opening operation"
+	kernel = cv2.getStructuringElement(cv2.MORPH, kernelSize)
+	closing = cv2.morphologyEx(gray, cv2.MORPH_CLOSE, kernel)
+	cv2.imshow("Opening: ({},{})".format(kernelSize[0],kernelSize[1]),closing)
+	cv2.waitKey(0)
+
+
+# Morphological gradient 
+
+A morphological gradient is the different between a dilation and erosion. It is useful for determining the outline of a particular object of an image 
+
+# loop over the kernels a final time
+for kernelSize in kernelSizes:
+	# construct a rectangular kernel and apply a "morphological gradient" operation to the image
+	kernel = cv2.getStructuringElement(cv2.MORPH, kernelSize)
+	gradient = cv2.morphologyEx(gray, cv2.MORPH_GRADIENT, kernel)
+	cv2.imshow("Opening: ({},{})".format(kernelSize[0],kernelSize[1]),gradient)
+	cv2.waitKey(0)
+
+```
+
+MOPHOLOGICAL HATS 
+
+```
+import argparse
+import cv2
+
+# construct the argument parser and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("")
+
+```
